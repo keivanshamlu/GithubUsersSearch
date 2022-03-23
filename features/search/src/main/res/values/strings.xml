@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sign_up">sign up</string>
+    <string name="login">login</string>
+    <string name="filter">filter</string>
+</resources>
