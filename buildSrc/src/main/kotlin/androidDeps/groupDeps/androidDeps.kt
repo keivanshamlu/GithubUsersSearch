@@ -3,8 +3,8 @@ package androidDeps.groupDeps
 import androidDeps.AndroidX
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import utility.implementation
-import utility.testImplementation
 import utility.kapt
+import utility.testImplementation
 
 fun DependencyHandler.naviagtion() {
     AndroidX.Navigation.run {
@@ -55,3 +55,16 @@ fun DependencyHandler.androidDefault() {
 fun DependencyHandler.databinding() {
     implementation (AndroidX.DataBinding.dataBinding)
 }
+
+fun DependencyHandler.recycler() {
+    implementation (AndroidX.RecyclerView.recycler)
+}
+
+fun DependencyHandler.pagination() {
+    AndroidX.Pagination.run {
+
+        implementation (pagination)
+        testImplementation (paginationCommon)
+    }
+}
+

@@ -7,7 +7,7 @@ import android.widget.FrameLayout
 import com.shamlou.designSystem.databinding.GithubUserViewBinding
 
 /**
- * represents UI of a Search, since we made a
+ * represents UI of a Search result, since we made a
  * custom view, we can share it between other
  * feature modules, design system module can
  * be a different project to be used between projects

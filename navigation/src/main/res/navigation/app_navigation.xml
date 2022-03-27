@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_navigation"
-    app:startDestination="@id/fragment_all_cities"
+    app:startDestination="@id/fragment_search"
     >
 
     <fragment
-        android:id="@+id/fragment_all_cities"
+        android:id="@+id/fragment_search"
         android:name="com.shamlou.search.ui.search.FragmentSearch"
         >
 

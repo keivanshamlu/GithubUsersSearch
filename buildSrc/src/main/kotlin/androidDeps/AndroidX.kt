@@ -38,6 +38,19 @@ object AndroidX {
         const val test = "androidx.arch.core:core-testing:$version"
     }
 
+    object Pagination {
+
+        private const val paging_version = "3.1.0"
+        const val pagination = "androidx.paging:paging-runtime:${paging_version}"
+        const val paginationCommon = "androidx.paging:paging-common:${paging_version}"
+
+    }
+    object RecyclerView {
+
+        private const val recycler_version = "1.2.0"
+        const val recycler = "androidx.recyclerview:recyclerview:${recycler_version}"
+    }
+
     object Navigation {
         const val version = "2.3.5"
         const val core = "androidx.navigation:navigation-fragment-ktx:$version"

@@ -5,7 +5,7 @@ import com.shamlou.domain.model.search.ResponseItemsDomain
 import com.shamlou.search.R
 
 class AdapterSearch : AdapterBase<ResponseItemsDomain>(
-        areItemsTheSame = { oldItem, newItem -> oldItem.name == newItem.name },
+        areItemsTheSame = { oldItem, newItem -> oldItem.id == newItem.id },
         areContentsTheSame = { oldItem, newItem -> oldItem == newItem }
 ) {
 

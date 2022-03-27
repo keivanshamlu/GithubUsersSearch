@@ -1,10 +1,10 @@
 package com.shamlou.domain.repo
 
-import androidx.lifecycle.LiveData
-import com.shamlou.bases_android.useCase.Resource
-import com.shamlou.domain.model.search.ResponseSearchDomain
+import androidx.paging.PagingData
+import com.shamlou.domain.model.search.ResponseItemsDomain
+import kotlinx.coroutines.flow.Flow
 
 interface SearchRepository {
 
-    fun search(param: String): LiveData<Resource<ResponseSearchDomain>>
+    fun search(param: String): Flow<PagingData<ResponseItemsDomain>>
 }

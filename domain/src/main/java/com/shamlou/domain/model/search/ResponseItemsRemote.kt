@@ -3,15 +3,23 @@ package com.shamlou.domain.model.search
 
 data class ResponseItemsDomain(
 
-    var name: String,
-    var displayName: String,
-    var shortDescription: String,
-    var description: String,
-    var createdBy: String,
-    var released: String,
-    var createdAt: String,
-    var updatedAt: String,
-    var featured: Boolean,
-    var curated: Boolean,
-    var score: Int
+    val login: String,
+    val id: Int,
+    val nodeId: String,
+    val avatarUrl: String,
+    val gravatarId: String,
+    val url: String,
+    val htmlUrl: String,
+    val followersUrl: String,
+    val subscriptionsUrl: String,
+    val organizationsUrl: String,
+    val reposUrl: String,
+    val receivedEventsUrl: String,
+    val type: String,
+    val score: Int,
+    val followingUrl: String,
+    val gistsUrl: String,
+    val starredUrl: String,
+    val eventsUrl: String,
+    val siteAdmin: Boolean
 )

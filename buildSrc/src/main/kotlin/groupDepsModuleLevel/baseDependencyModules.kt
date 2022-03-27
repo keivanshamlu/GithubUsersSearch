@@ -16,6 +16,7 @@ fun DependencyHandler.baseAndroidDependencies() {
     baseDependencies()
     daggerAndroid()
     testAndroid()
+    pagination()
 }
 fun DependencyHandler.featureModuleBaseDependencies() {
     androidDefault()
@@ -24,5 +25,6 @@ fun DependencyHandler.featureModuleBaseDependencies() {
     arch()
     naviagtion()
     databinding()
+    recycler()
     daggerAssisted()
 }

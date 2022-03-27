@@ -3,18 +3,26 @@ package com.shamlou.data.model.search
 import com.google.gson.annotations.SerializedName
 
 
-data class ResponseItemsRemote (
+data class ResponseItemsRemote(
 
-  @SerializedName("name"              ) var name             : String?  = null,
-  @SerializedName("display_name"      ) var displayName      : String?  = null,
-  @SerializedName("short_description" ) var shortDescription : String?  = null,
-  @SerializedName("description"       ) var description      : String?  = null,
-  @SerializedName("created_by"        ) var createdBy        : String?  = null,
-  @SerializedName("released"          ) var released         : String?  = null,
-  @SerializedName("created_at"        ) var createdAt        : String?  = null,
-  @SerializedName("updated_at"        ) var updatedAt        : String?  = null,
-  @SerializedName("featured"          ) var featured         : Boolean? = null,
-  @SerializedName("curated"           ) var curated          : Boolean? = null,
-  @SerializedName("score"             ) var score            : Int?     = null
+    @SerializedName("login") var login: String? = null,
+    @SerializedName("id") var id: Int? = null,
+    @SerializedName("node_id") var nodeId: String? = null,
+    @SerializedName("avatar_url") var avatarUrl: String? = null,
+    @SerializedName("gravatar_id") var gravatarId: String? = null,
+    @SerializedName("url") var url: String? = null,
+    @SerializedName("html_url") var htmlUrl: String? = null,
+    @SerializedName("followers_url") var followersUrl: String? = null,
+    @SerializedName("subscriptions_url") var subscriptionsUrl: String? = null,
+    @SerializedName("organizations_url") var organizationsUrl: String? = null,
+    @SerializedName("repos_url") var reposUrl: String? = null,
+    @SerializedName("received_events_url") var receivedEventsUrl: String? = null,
+    @SerializedName("type") var type: String? = null,
+    @SerializedName("score") var score: Int? = null,
+    @SerializedName("following_url") var followingUrl: String? = null,
+    @SerializedName("gists_url") var gistsUrl: String? = null,
+    @SerializedName("starred_url") var starredUrl: String? = null,
+    @SerializedName("events_url") var eventsUrl: String? = null,
+    @SerializedName("site_admin") var siteAdmin: Boolean? = null
 
 )

@@ -1,11 +1,12 @@
 package com.shamlou.sample.di.features
 
-import com.shamlou.bases_android.useCase.UseCaseBaseLiveData
+import androidx.paging.PagingData
+import com.shamlou.bases_android.useCase.UseCaseBaseFlow
 import com.shamlou.core.assisted.InjectingSavedStateViewModelFactory
 import com.shamlou.core.assisted.ViewModelFactory
 import com.shamlou.data.SearchRepositoryImpl
 import com.shamlou.data.services.SearchApi
-import com.shamlou.domain.model.search.ResponseSearchDomain
+import com.shamlou.domain.model.search.ResponseItemsDomain
 import com.shamlou.domain.repo.SearchRepository
 import com.shamlou.domain.usecases.search.SearchUseCase
 import com.shamlou.search.di.SearchScope
@@ -13,7 +14,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import java.util.*
 
 @Module
 abstract class SearchModule {
@@ -25,7 +25,7 @@ abstract class SearchModule {
 
     @Binds
     @SearchScope
-    abstract fun bindSearchUseCase(useCase : SearchUseCase): UseCaseBaseLiveData<String, ResponseSearchDomain>
+    abstract fun bindSearchUseCase(useCase : SearchUseCase): UseCaseBaseFlow<String, PagingData<ResponseItemsDomain>>
 
     @Binds
     @SearchScope

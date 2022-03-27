@@ -19,6 +19,7 @@ androidLib {
 }
 dependencies {
     implementation(project(Modules.BASES))
+    implementation(project(Modules.DATA))
 
     baseAndroidDependencies()
     room()
