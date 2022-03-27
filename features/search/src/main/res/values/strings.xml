@@ -3,4 +3,5 @@
     <string name="sign_up">sign up</string>
     <string name="login">login</string>
     <string name="filter">filter</string>
+    <string name="search_for_user">search for user</string>
 </resources>

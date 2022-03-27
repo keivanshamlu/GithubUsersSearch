@@ -37,4 +37,8 @@ abstract class BaseViewModel : ViewModel() {
     fun handleNetworkError(it: Resource<*>) {
         if (it.status == Resource.Status.ERROR) _actionCommand.tryEmit(Event(ActionCommand.ShowSnackBar(it.error?.message?:"",Snackbar.LENGTH_LONG)))
     }
+    // show snack bar error to user
+    fun handlePagingErrorSnackBar(t : Throwable) {
+        _actionCommand.tryEmit(Event(ActionCommand.ShowSnackBar(t.message?:"",Snackbar.LENGTH_LONG)))
+    }
 }

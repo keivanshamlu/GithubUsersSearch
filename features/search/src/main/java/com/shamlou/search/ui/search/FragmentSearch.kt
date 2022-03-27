@@ -1,26 +1,27 @@
 package com.shamlou.search.ui.search
 
 import android.os.Bundle
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import androidx.core.widget.doOnTextChanged
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.textfield.TextInputEditText
+import com.shamlou.bases_android.edittext.textInputAsFlow
 import com.shamlou.bases_android.fragment.BaseFragment
 import com.shamlou.core.assisted.ViewModelFactory
 import com.shamlou.search.R
 import com.shamlou.search.databinding.FragmentSearchBinding
 import com.shamlou.search.ui.search.adapter.LoaderSearchItemsAdapter
 import com.shamlou.search.ui.search.adapter.LoaderStateAdapter
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 class FragmentSearch : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
@@ -40,15 +41,12 @@ class FragmentSearch : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         binding?.viewModel = viewModel
     }
 
-    fun TextInputEditText.textInputAsFlow() = callbackFlow {
-        val watcher: TextWatcher = doOnTextChanged { textInput: CharSequence?, _, _, _ ->
-            trySend(textInput)
-        }
-        awaitClose { this@textInputAsFlow.removeTextChangedListener(watcher) }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
 
         adapter = LoaderSearchItemsAdapter().apply {
 
@@ -58,13 +56,12 @@ class FragmentSearch : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
             }
             //checks initial loading
             addLoadStateListener { loadState ->
-//                binding?.progressBarLoading?.isVisible =
-//                    loadState.source.refresh is LoadState.Loading
-//
-//                // to handle error
-//                viewModel.handlePagingError(loadState.getErrorState()?.error)
-                if(loadState.source.refresh is LoadState.Error){
-                    Log.d("TESTEST", (loadState.source.refresh as? LoadState.Error)?.error?.message?:"")
+                binding?.progressBarLoading?.isVisible =
+                    loadState.source.refresh is LoadState.Loading
+
+                // to handle error
+                if (loadState.source.refresh is LoadState.Error) {
+                    viewModel.handlePagingError((loadState.source.refresh as? LoadState.Error)?.error)
                 }
             }
             //handles loading and retry
@@ -75,18 +72,23 @@ class FragmentSearch : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun setUpViews() {
 
+        // listens to recycler changes and applies
+        // debounce on in to prevent repetitive api
+        // calls and then calls view model and
+        // observes it paged data
         binding?.editTextSearchBar
             ?.textInputAsFlow()
             ?.debounce(800)
             ?.onEach {
-                viewModel.searchUser(it.toString())?.let {
+                viewModel.searchUser(it.toString().lowercase(Locale.getDefault()))?.let {
                     lifecycleScope.launch {
                         repeatOnLifecycle(Lifecycle.State.STARTED) {
                             it.collectLatest {
-                                it?.let { adapter.submitData(it) }
+                                it?.let {
+                                    adapter.submitData(it)
+                                }
                             }
                         }
                     }
@@ -96,5 +98,11 @@ class FragmentSearch : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
 
         binding?.recyclerViewSearchResult?.layoutManager = LinearLayoutManager(context)
         binding?.recyclerViewSearchResult?.adapter = adapter.withLoadStateFooter(loaderStateAdapter)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setUpViews()
     }
 }

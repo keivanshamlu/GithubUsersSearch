@@ -23,24 +23,33 @@ class SearchRepositoryImpl @Inject constructor(
     private val mapperSearchResultRemoteToDomain: Mapper<ResponseItemsRemote, ResponseItemsDomain>,
 ) : SearchRepository {
 
+    // data source should be invalidated when search query was found
     var dataSource : SearchPagingSource? = null
 
+
+    // invalidates dataSource and then create new
+    // dataSource with new query, and the returns
+    // pager as flow to be passed to presentation layer
     @ExperimentalPagingApi
     override fun search(param: String): Flow<PagingData<ResponseItemsDomain>> {
 
-        dataSource?.invalidate()
-        dataSource = SearchPagingSource(
-            searchService,
-            param,
-            mapperSearchResultRemoteToDomain
-        )
+//        dataSource?.invalidate()
+//        dataSource = SearchPagingSource(
+//            searchService,
+//            param,
+//            mapperSearchResultRemoteToDomain
+//        )
 
         return Pager(
             config = PagingConfig(
                 pageSize = DEFAULT_PAGE_SIZE
             ),
             pagingSourceFactory = {
-                dataSource!!
+                SearchPagingSource(
+                    searchService,
+                    param,
+                    mapperSearchResultRemoteToDomain
+                )
             }
         ).flow
     }

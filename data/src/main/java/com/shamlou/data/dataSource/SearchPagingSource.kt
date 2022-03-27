@@ -29,6 +29,13 @@ class SearchPagingSource @Inject  constructor(
             // since pager works with page number,
             // we calculate offset with page size
                 Log.d("TESTEST", pageIndex.toString())
+            if(query.isEmpty()){
+                return LoadResult.Page(
+                    data = listOf(),
+                    prevKey = if (pageIndex == DEFAULT_PAGE_INDEX) null else pageIndex,
+                    nextKey = null
+                )
+            }
             val response = service.searchGithubUser(
                 page = pageIndex,
                 perPage = DEFAULT_PAGE_SIZE,

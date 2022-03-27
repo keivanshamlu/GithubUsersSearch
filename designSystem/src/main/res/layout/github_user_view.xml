@@ -5,9 +5,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/spacing_xs"
-        app:cardElevation="@dimen/spacing_xs"
-        app:cardMaxElevation="@dimen/spacing_xs"
+        app:cardCornerRadius="@dimen/spacing_xxs"
+        app:cardElevation="@dimen/spacing_xxs"
+        app:cardMaxElevation="@dimen/spacing_xxs"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 
