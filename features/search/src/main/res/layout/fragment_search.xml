@@ -23,12 +23,12 @@
 
         <ProgressBar
             android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/edit_text_field"
+            app:layout_constraintEnd_toEndOf="@id/edit_text_field"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_text_field"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/progress_bar_loading"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -57,8 +57,6 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_search_result"

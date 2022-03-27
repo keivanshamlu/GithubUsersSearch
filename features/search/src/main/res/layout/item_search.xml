@@ -6,6 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:setSearchTitle="@{item.login}"
+        app:setImageUrl="@{item.avatarUrl}"
+        app:setScore="@{item.score}"
         />
 
     <data>

@@ -1,3 +1,4 @@
+import androidDeps.groupDeps.glide
 import configs.androidFeature
 import modules.Modules
 
@@ -13,4 +14,5 @@ plugins {
 androidFeature()
 dependencies {
     implementation(project(Modules.NAVIGATION))
+    glide()
 }

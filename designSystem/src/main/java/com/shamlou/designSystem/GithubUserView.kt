@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import com.shamlou.bases_android.bindingAdapters.ImageViewBindingAdapter
 import com.shamlou.designSystem.databinding.GithubUserViewBinding
 
 /**
@@ -37,26 +38,20 @@ class GithubUserView @JvmOverloads constructor(
         mBinding?.textViewSearchTitle?.text = searchTitle
     }
 
-    fun setStartAndEnd(startAndEnd: String?) {
+    fun setScore(score: Int?) {
 
-        mBinding?.textViewSearchStartAndEndAt?.text = startAndEnd
+        mBinding?.textViewSearchScore?.text = "score : $score"
     }
 
-    fun setEarningsAmount(earningsAmount: String?) {
 
-        mBinding?.textViewSearchEarningsAmount?.text = earningsAmount
-    }
-
-    fun setExtraBriefing(extraBriefing: String?) {
-
-        mBinding?.textViewSearchExtraBriefing?.text = extraBriefing
-    }
-
-    /**
-     * i couldn't load Search image since it requires authentication
-     */
     fun setImageUrl(imageUrl: String) {
+        mBinding?.imageViewAvatar?.let {
 
+            ImageViewBindingAdapter.loadUrl(
+                it,
+                imageUrl
+            )
+        }
     }
 
 }
