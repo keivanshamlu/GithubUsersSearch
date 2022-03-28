@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -34,9 +33,7 @@ class SearchUseCaseTest {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-
     private val testDispatcher = TestCoroutineDispatcher()
-    private val testScope = TestCoroutineScope(testDispatcher)
 
     lateinit var useCase : SearchUseCase
 
@@ -61,6 +58,7 @@ class SearchUseCaseTest {
 
         runBlocking {
 
+            //given
             coEvery { repository.search(exampleUserName) } returns flow {
                 emit(
                     PagingData.from(
@@ -68,16 +66,17 @@ class SearchUseCaseTest {
                     )
                 )
             }
-
             val differ = AsyncPagingDataDiffer(
                 diffCallback = MyDiffCallback(),
                 updateCallback = NoopListCallback(),
                 workerDispatcher = Dispatchers.Main
             )
 
-            val a = useCase.invoke(exampleUserName).first()
-            differ.submitData(a)
+            //when
+            val response = useCase.invoke(exampleUserName).first()
 
+            //then
+            differ.submitData(response)
             assertEquals(itemsDomain, differ.snapshot().items)
         }
     }
