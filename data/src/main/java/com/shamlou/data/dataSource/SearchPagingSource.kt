@@ -1,6 +1,5 @@
 package com.shamlou.data.dataSource
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.shamlou.bases_android.mapper.Mapper
@@ -25,7 +24,6 @@ class SearchPagingSource @Inject constructor(
         // last key or first page
         val pageIndex = params.key ?: DEFAULT_PAGE_INDEX
         return try {
-            Log.d("TESTEST", pageIndex.toString())
             //handle when user removes all chars in edittext
             if (query.isEmpty()) {
                 return LoadResult.Page(
@@ -71,7 +69,6 @@ class SearchPagingSource @Inject constructor(
         // We need to get the previous key (or next key if previous is null) of the page
         // that was closest to the most recently accessed index.
         // Anchor position is the most recently accessed index.
-        Log.d("TESTEST", "refresh")
         return DEFAULT_PAGE_INDEX
     }
 }

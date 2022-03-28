@@ -1,6 +1,5 @@
 package com.shamlou.data
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -45,8 +44,10 @@ class SearchRepositoryImpl @Inject constructor(
         }
     ).flow
 
+    // makes network call to search for user details,
+    // maps it to domain model and then emit it
+    // to be collected in view model
     override fun userDetails(param: String): Flow<ResponseUserDetailDomain> = flow {
-        Log.d("TESTEST", param)
         val response = searchService.getUserDetails(param)
         emit(mapperResponseUserDetailsRemoteToDomain.map(response))
     }
