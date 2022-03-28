@@ -1,4 +1,4 @@
-package com.shamlou.sample.di.features
+package com.shamlou.sample.di.features.search
 
 import androidx.paging.PagingData
 import com.shamlou.bases_android.useCase.UseCaseBaseFlow

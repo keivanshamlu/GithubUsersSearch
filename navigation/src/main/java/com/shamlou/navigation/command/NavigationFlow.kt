@@ -1,15 +1,14 @@
 package com.shamlou.navigation.command
 
 import androidx.navigation.NavDirections
-import com.shamlou.navigation.command.NavigationFlow.*
-import com.shamlou.navigation.model.NavModelMap
+import com.shamlou.search.ui.search.FragmentSearchDirections
 
 sealed class NavigationFlow {
-    data class ToMap(val navModelMap: NavModelMap) : NavigationFlow()
+    data class ToUserDetails(val userName: String) : NavigationFlow()
 }
 
 
-//fun NavigationFlow.toNavDirections(): NavDirections =
-//    when (this) {
-//        is ToMap -> //FragmentSearchDirections.
-//    }
+fun NavigationFlow.toNavDirections(): NavDirections =
+    when (this) {
+        is NavigationFlow.ToUserDetails -> FragmentSearchDirections.actionFragmentSearchToUserDetail(userName)
+    }

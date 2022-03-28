@@ -7,7 +7,7 @@ fun NavController.navigateBy(command: NavigationCommand) {
     when (command) {
         is NavigationCommand.To ->
             doSafely {
-//                navigate(command.flow.toNavDirections())
+                navigate(command.flow.toNavDirections())
             }
         is NavigationCommand.Back ->
             doSafely { popBackStack() }

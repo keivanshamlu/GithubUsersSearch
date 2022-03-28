@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         app:setSearchTitle="@{item.login}"
         app:setImageUrl="@{item.avatarUrl}"
-        app:setScore="@{item.score}"
+        app:setGravatarId="@{item.id}"
         />
 
     <data>

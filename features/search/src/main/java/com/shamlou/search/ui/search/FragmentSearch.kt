@@ -51,8 +51,9 @@ class FragmentSearch : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         adapter = LoaderSearchItemsAdapter().apply {
 
             //handles item click
-            onItemClicked = { clickedItem, imageView ->
+            onItemClicked = { clickedItem ->
 
+                viewModel.navigateToUserDetails(clickedItem)
             }
             //checks initial loading
             addLoadStateListener { loadState ->

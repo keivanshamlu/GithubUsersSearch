@@ -10,8 +10,18 @@
         android:name="com.shamlou.search.ui.search.FragmentSearch"
         >
 
-        <action android:id="@+id/action_fragment_search_to_map"
-            app:destination="@+id/fragment_map"/>
+        <action android:id="@+id/action_fragment_search_to_user_detail"
+            app:destination="@+id/fragment_user_detail"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_user_detail"
+        android:name="com.shamlou.search.ui.userDetails.FragmentUserDetails">
+
+        <argument
+            android:name="userName"
+            app:argType="string"/>
 
     </fragment>
 

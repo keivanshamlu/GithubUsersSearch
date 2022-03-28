@@ -1,4 +1,4 @@
-package com.shamlou.sample.di.features
+package com.shamlou.sample.di.features.search
 
 import com.shamlou.bases_android.mapper.Mapper
 import com.shamlou.data.mappers.MapperResponseSearchRemoteToDomain

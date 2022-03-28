@@ -38,9 +38,9 @@ class GithubUserView @JvmOverloads constructor(
         mBinding?.textViewSearchTitle?.text = searchTitle
     }
 
-    fun setScore(score: Int?) {
+    fun setGravatarId(id: Int?) {
 
-        mBinding?.textViewSearchScore?.text = "score : $score"
+        mBinding?.textViewSearchGravatarId?.text = "gravatarId : $id"
     }
 
 

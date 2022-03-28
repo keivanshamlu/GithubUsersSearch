@@ -6,6 +6,7 @@
         <entry key="designSystem/src/main/res/layout/github_user_view.xml" value="0.32760416666666664" />
         <entry key="features/search/src/main/res/layout/activity_main.xml" value="0.32760416666666664" />
         <entry key="features/search/src/main/res/layout/fragment_search.xml" value="0.4470504619758351" />
+        <entry key="features/search/src/main/res/layout/fragment_user_details.xml" value="0.32760416666666664" />
         <entry key="features/search/src/main/res/layout/item_search.xml" value="0.32760416666666664" />
         <entry key="features/search/src/main/res/layout/item_search_loading.xml" value="0.32760416666666664" />
       </map>

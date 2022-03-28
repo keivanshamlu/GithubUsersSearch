@@ -1,7 +1,6 @@
 package com.shamlou.search.ui.search.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -16,7 +15,7 @@ class LoaderSearchItemsAdapter :
     PagingDataAdapter<ResponseItemsDomain, LoaderSearchItemsAdapter.SearchImageViewHolder>(
         REPO_COMPARATOR
     ) {
-    var onItemClicked: ((item: ResponseItemsDomain, imageView: View) -> Unit)? = null
+    var onItemClicked: ((item: ResponseItemsDomain) -> Unit)? = null
 
     companion object {
         private val REPO_COMPARATOR =
@@ -75,7 +74,7 @@ class LoaderSearchItemsAdapter :
                     setOnClickListener {
                         item?.let {
 
-                            onItemClicked?.invoke(it, binding.root )
+                            onItemClicked?.invoke(it)
                         }
                     }
                 }

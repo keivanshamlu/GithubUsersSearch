@@ -8,9 +8,12 @@ import com.shamlou.bases_android.useCase.UseCaseBaseFlow
 import com.shamlou.bases_android.viewModel.BaseViewModel
 import com.shamlou.core.assisted.AssistedSavedStateViewModelFactory
 import com.shamlou.domain.model.search.ResponseItemsDomain
+import com.shamlou.navigation.command.NavigationFlow
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 
 const val LAST_QUERY = "LAST_QUERY"
 
@@ -21,18 +24,6 @@ class SearchViewModel @AssistedInject constructor(
 
     // contains pagedData that holds search results
     private var search: StateFlow<PagingData<ResponseItemsDomain>?>? = null
-
-    // contains errors thrown by paging,
-    // and expose it as [hasError] to inform
-    // fragment about it and show retry button
-    // i used state in to convert it to stateFlow
-    // so it could be collected in data binding
-    private val _error =
-        MutableStateFlow<Throwable?>(null)
-    val hasError: StateFlow<Boolean>
-        get() = _error.map {
-            it != null
-        }.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
     // called when search bar changes, debounce
     // operation is already set on edittext so
@@ -59,10 +50,14 @@ class SearchViewModel @AssistedInject constructor(
         return search
     }
 
+    fun navigateToUserDetails(user: ResponseItemsDomain){
+
+        navigateTo(NavigationFlow.ToUserDetails(user.login))
+    }
+
     // called by fragment, paging error happens
     fun handlePagingError(error: Throwable?) {
 
-        _error.tryEmit(error)
         error?.let { handlePagingErrorSnackBar(it) }
     }
 
