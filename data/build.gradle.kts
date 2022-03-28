@@ -1,6 +1,6 @@
+
 import androidDeps.groupDeps.lifeCycle
 import androidDeps.groupDeps.room
-import configs.androidFeature
 import configs.androidLib
 import kotlinDeps.groupDeps.networking
 import modules.Modules
@@ -12,6 +12,7 @@ plugins {
         kotlin(KAPT)
         id(NAVIGATION_SAFEARGS_KOTLIN)
         id(ANDROID_EXTENSIONS)
+        id(GOOGLE_SECRETS_PLUGIN)
     }
 }
 androidLib()

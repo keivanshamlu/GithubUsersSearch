@@ -1,5 +1,6 @@
 package com.shamlou.data.services
 
+import com.shamlou.data.BuildConfig
 import com.shamlou.data.model.search.ResponseSearchRemote
 import com.shamlou.data.model.userDetail.ResponseUserDetailRemote
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ interface SearchApi {
     // github has limited request count on IPs
     @Headers(
         "accept:application/vnd.github.v3+json",
-        "Authorization: token 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",
+        BuildConfig.API_KEY,
     )
     @GET("/search/users")
     suspend fun searchGithubUser(
@@ -25,7 +26,7 @@ interface SearchApi {
 
     @Headers(
         "accept:application/vnd.github.v3+json",
-        "Authorization: token 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",
+        BuildConfig.API_KEY,
     )
     @GET("/users/{username}")
     suspend fun getUserDetails(

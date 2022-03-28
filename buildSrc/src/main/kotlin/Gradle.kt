@@ -1,5 +1,5 @@
+
 import androidDeps.AndroidX
-import androidDeps.DependencyInjection
 import kotlinDeps.Kotlin
 
 object Gradle {
@@ -13,6 +13,7 @@ object GradlePluginId {
     const val ANDROID_EXTENSIONS = "kotlin-android-extensions"
     const val ANDROID_APPLICATION = "com.android.application"
     const val ANDROID_LIBRARY = "com.android.library"
+    const val GOOGLE_SECRETS_PLUGIN = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin"
     const val JAVA_LIBRARY = "java-library"
     const val KOTLIN_KAPT = "kotlin-kapt"
     const val KOTLIN = "kotlin"
