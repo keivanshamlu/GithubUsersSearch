@@ -18,6 +18,7 @@ object ImageViewBindingAdapter {
             .with(imageView.context)
             .load(url)
             .centerCrop()
+            .circleCrop()
             .into(imageView);
     }
 

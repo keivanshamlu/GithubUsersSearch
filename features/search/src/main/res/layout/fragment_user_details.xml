@@ -3,6 +3,75 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:binding="http://schemas.android.com/binding">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_view_avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            binding:imageUrl="@{viewModel.userDetails.data.avatarUrl}" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_loading"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            binding:isVisible="@{viewModel.userDetails.loading}" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/image_view_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:text="@{viewModel.userDetails.data.login}"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_avatar" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/image_view_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:text="@{viewModel.userDetails.data.bio}"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_user_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/image_view_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:text="@{viewModel.userDetails.data.name}"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_view_bio" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <data>
 
         <variable
@@ -10,12 +79,5 @@
             type="com.shamlou.search.ui.userDetails.UserDetailsViewModel" />
 
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

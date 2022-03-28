@@ -50,6 +50,10 @@ class SearchViewModel @AssistedInject constructor(
         return search
     }
 
+    // navigates user to details page,
+    // I used command design pattern
+    // to delegate some logic to base
+    // fragment and base viewModel
     fun navigateToUserDetails(user: ResponseItemsDomain){
 
         navigateTo(NavigationFlow.ToUserDetails(user.login))

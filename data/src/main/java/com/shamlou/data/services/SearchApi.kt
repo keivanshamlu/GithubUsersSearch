@@ -1,8 +1,10 @@
 package com.shamlou.data.services
 
 import com.shamlou.data.model.search.ResponseSearchRemote
+import com.shamlou.data.model.userDetail.ResponseUserDetailRemote
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SearchApi {
@@ -20,4 +22,13 @@ interface SearchApi {
         @Query("per_page") perPage: Int,
         @Query("q") query: String
     ): ResponseSearchRemote
+
+    @Headers(
+        "accept:application/vnd.github.v3+json",
+        "Authorization: token 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",
+    )
+    @GET("/users/{username}")
+    suspend fun getUserDetails(
+        @Path("username") userName: String
+    ): ResponseUserDetailRemote
 }

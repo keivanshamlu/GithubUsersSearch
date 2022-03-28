@@ -14,7 +14,7 @@ import javax.inject.Inject
 const val DEFAULT_PAGE_SIZE = 10
 const val DEFAULT_PAGE_INDEX = 1
 
-class SearchPagingSource @Inject  constructor(
+class SearchPagingSource @Inject constructor(
     private val service: SearchApi,
     private val query: String,
     private val mapperSearchResultRemoteToDomain: Mapper<ResponseItemsRemote, ResponseItemsDomain>,
@@ -25,17 +25,18 @@ class SearchPagingSource @Inject  constructor(
         // last key or first page
         val pageIndex = params.key ?: DEFAULT_PAGE_INDEX
         return try {
-            // getting response from remote
-            // since pager works with page number,
-            // we calculate offset with page size
-                Log.d("TESTEST", pageIndex.toString())
-            if(query.isEmpty()){
+            Log.d("TESTEST", pageIndex.toString())
+            //handle when user removes all chars in edittext
+            if (query.isEmpty()) {
                 return LoadResult.Page(
                     data = listOf(),
                     prevKey = if (pageIndex == DEFAULT_PAGE_INDEX) null else pageIndex,
                     nextKey = null
                 )
             }
+            // getting response from remote
+            // since pager works with page number,
+            // we calculate offset with page size
             val response = service.searchGithubUser(
                 page = pageIndex,
                 perPage = DEFAULT_PAGE_SIZE,
