@@ -75,7 +75,7 @@ class FragmentSearch : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
 
     private fun setUpViews() {
 
-        // listens to recycler changes and applies
+        // listens to edittext changes and applies
         // debounce on in to prevent repetitive api
         // calls and then calls view model and
         // observes it paged data
